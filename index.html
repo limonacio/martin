@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lic. Martín Andrés Brooks — Psicología</title>
+<meta name="description" content="Psicoterapia para adultos. Un espacio de escucha y acompañamiento profesional, con turno online.">
+<link rel="apple-touch-icon" href="/public/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F7F2E9;
+    --sand-card: #FFFDF9;
+    --sand-border: #E4DAC8;
+    --ink: #332F27;
+    --ink-muted: #7D7566;
+    --sage: #74855E;
+    --sage-dark: #63704F;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--sand);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding-inline: 16px;
+  }
+  header {
+    border-bottom: 1px solid var(--sand-border);
+  }
+  .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-block: 18px;
+  }
+  .brand {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  main {
+    padding-block: 56px 40px;
+  }
+  .hero {
+    display: grid;
+    gap: 40px;
+  }
+  @media (min-width: 900px) {
+    .hero {
+      grid-template-columns: 280px 1fr;
+      align-items: center;
+      gap: 80px;
+    }
+  }
+  .kicker {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--sage);
+  }
+  h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(1.9rem, 4vw, 2.75rem);
+    line-height: 1.15;
+    margin: 12px 0 0;
+    text-wrap: balance;
+  }
+  .intro {
+    max-width: 42ch;
+    margin: 20px 0 0;
+    color: var(--ink-muted);
+  }
+  .cta-card {
+    display: block;
+    width: 220px;
+    max-width: 100%;
+    margin: 40px auto 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(51,47,39,0.08), 0 8px 20px rgba(51,47,39,0.08);
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+  @media (min-width: 900px) {
+    .cta-card { margin: 0; order: -1; }
+  }
+  .cta-card:hover { transform: translateY(-2px); }
+  .cta-card img { display: block; width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+  .cta-card .band {
+    display: block;
+    padding: 14px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #FDFDF1;
+    background: #2E3B28;
+  }
+  .cta-card[aria-disabled="true"] {
+    cursor: default;
+  }
+  .cta-card[aria-disabled="true"] .band {
+    background: var(--ink-muted);
+  }
+  .cta-note {
+    margin: 10px auto 0;
+    max-width: 220px;
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+  }
+  @media (min-width: 900px) {
+    .cta-note { display: none; }
+  }
+  .divider {
+    margin: 56px 0;
+    height: 1px;
+    background: linear-gradient(to right, var(--sand-border), transparent 70%);
+  }
+  .about {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    max-width: 640px;
+  }
+  .about img {
+    width: 64px;
+    height: 64px;
+    border-radius: 999px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .about h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  .about p {
+    margin: 6px 0 0;
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+  }
+  footer {
+    border-top: 2px solid rgba(125,117,102,0.3);
+    padding-block: 20px 28px;
+  }
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+  }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 18px; }
+  .contact-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink-muted);
+    text-decoration: none;
+  }
+  .contact-links a:hover { text-decoration: underline; }
+  .icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    border: 1px solid rgba(125,117,102,0.3);
+    flex-shrink: 0;
+  }
+  .socials { display: flex; gap: 12px; }
+  .socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    border: 1px solid rgba(125,117,102,0.3);
+    color: var(--ink-muted);
+  }
+  .socials a:hover { border-color: var(--sage); color: var(--sage); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-row">
+    <span class="brand">Lic. Martín Andrés Brooks</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div>
+      <!--
+        Este botón todavía no está conectado a nada a propósito —
+        Martin y Limonario se separaron primero, la conexión al
+        sistema de reservas se agrega después como un paso aparte.
+        Cuando esté listo, este <a> pasa a apuntar a:
+        https://limonario.limonacio.com/martinbrookspsi/reservar
+      -->
+      <a class="cta-card" href="#" aria-disabled="true" onclick="return false;">
+        <img src="/public/logo-mb.png" alt="Lic. Martín Andrés Brooks — Psicología">
+        <span class="band">Muy pronto: reservar turno</span>
+      </a>
+      <p class="cta-note">La reserva online se habilita en breve.</p>
+    </div>
+
+    <div>
+      <p class="kicker">Psicoterapia para adultos</p>
+      <h1>Un espacio para pensar(se).</h1>
+      <p class="intro">Ofrezco un espacio de escucha y acompañamiento profesional, pensado para quienes buscan trabajar sobre su bienestar emocional a su propio ritmo. Las sesiones son individuales y se coordinan con turno previo.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="about">
+    <img src="/public/martin-brooks.jpg" alt="Martín Andrés Brooks">
+    <div>
+      <h2>Sobre mí</h2>
+      <p>Psicólogo (UNC). Además de la clínica me dedico a la música y no dejo nunca de leer — dos costumbres que, sospecho, terminan filtrándose en cómo escucho.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="contact-links">
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=martin.brooks.psi@gmail.com" target="_blank" rel="noopener noreferrer">
+        <span class="icon-circle">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
+        </span>
+        martin.brooks.psi@gmail.com
+      </a>
+      <a href="https://wa.me/34651428903" target="_blank" rel="noopener noreferrer">
+        <span class="icon-circle">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4c-4.4 0-8 3.2-8 7.1 0 1.8.8 3.5 2.1 4.7-.2 1-.6 2.2-1.2 3 1-.1 2.4-.5 3.3-1 1.2.5 2.5.8 3.8.8 4.4 0 8-3.2 8-7.1S16.4 4 12 4z"/><path d="M9 9.8c0 2.9 2.3 5.2 5.2 5.2"/></svg>
+        </span>
+        +34 651 42 89 03
+      </a>
+    </div>
+    <div class="socials">
+      <a href="https://www.linkedin.com/in/martin-andres-brooks-310442137/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="7.2" cy="7.4" r="0.6" fill="currentColor" stroke="none"/><line x1="7.2" y1="10.5" x2="7.2" y2="17"/><path d="M11 17v-3.6a2.4 2.4 0 0 1 4.8 0V17"/><line x1="11" y1="10.5" x2="11" y2="17"/></svg>
+      </a>
+      <a href="https://www.instagram.com/tinchobrooks/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.3" cy="6.7" r="0.7" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
