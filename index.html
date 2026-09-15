@@ -173,12 +173,16 @@
       align-items: center;
       gap: 96px;
     }
+    /* Recién acá, en desktop, la tarjeta pasa a la izquierda y el
+       texto a la derecha. En mobile/tablet siguen el orden natural
+       del HTML: primero el texto, después la tarjeta — igual que en
+       el original. */
+    .hero-text { order: 2; }
+    .cta-card { order: 1; }
   }
   @media (min-width: 1280px) {
     .hero { gap: 128px; }
   }
-  .hero-text { order: 2; }
-  @media (min-width: 1024px) { .hero-text { order: 2; } }
   .kicker {
     margin: 0;
     font-size: 0.75rem;
@@ -204,7 +208,6 @@
 
   .cta-card {
     display: block;
-    order: 1;
     width: 208px;
     max-width: 100%;
     margin: 40px auto 0;
