@@ -327,10 +327,14 @@
     color: var(--ink-muted);
   }
   .socials a:hover { border-color: var(--sage); color: var(--sage); }
-  .pro-access {
+  /* Línea completa (de borde a borde), no encerrada en .wrap — igual
+     criterio que el divisor de abajo del header. */
+  .footer-divider {
     margin-top: 18px;
-    padding-top: 14px;
     border-top: 1px solid rgba(125,117,102,0.2);
+  }
+  .pro-access {
+    padding-top: 14px;
   }
   .pro-access a {
     display: inline-flex;
@@ -427,6 +431,7 @@
       </a>
     </div>
   </div>
+  <div class="footer-divider"></div>
   <div class="wrap pro-access">
     <a href="https://limonario.limonacio.com/login" data-i18n="footer.professionalAccess">Acceso profesional</a>
   </div>
