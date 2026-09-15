@@ -18,6 +18,7 @@
     --ink-muted: #7D7566;
     --sage: #74855E;
     --sage-dark: #63704F;
+    --band-rest: #37514c;
   }
   * { box-sizing: border-box; }
   body {
@@ -28,41 +29,136 @@
     line-height: 1.5;
   }
   .wrap {
-    max-width: 1120px;
+    max-width: 1440px;
     margin: 0 auto;
     padding-inline: 16px;
   }
-  header {
-    border-bottom: 1px solid var(--sand-border);
+  @media (min-width: 640px) {
+    .wrap { padding-inline: 32px; }
   }
-  .header-row {
+
+  /* ---------- Header ---------- */
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+  }
+  @media (min-width: 640px) {
+    header {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 32px;
+    }
+  }
+  .header-row1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    padding-block: 18px;
+  }
+  @media (min-width: 640px) {
+    .header-row1 { justify-content: flex-start; }
+  }
+  .brand-group { display: flex; align-items: center; gap: 12px; }
+  .brandmark {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    border: 1px solid var(--ink);
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: 0.85rem;
   }
   .brand {
     font-family: 'Fraunces', Georgia, serif;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1rem;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
   }
+  .header-row1 .lang-toggle { display: inline-flex; }
+  @media (min-width: 640px) {
+    .header-row1 .lang-toggle { display: none; }
+  }
+  .header-row2 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+  .header-row2 .lang-toggle { display: none; }
+  @media (min-width: 640px) {
+    .header-row2 .lang-toggle { display: inline-flex; }
+  }
+  .lang-toggle {
+    overflow: hidden;
+    border-radius: 999px;
+    border: 1px solid var(--sand-border);
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+  .lang-toggle button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    color: var(--ink-muted);
+    font: inherit;
+  }
+  .lang-toggle button:hover { color: var(--ink); }
+  .lang-toggle button[aria-pressed="true"] {
+    background: var(--ink);
+    color: var(--sand-card);
+  }
+  .lang-toggle button[aria-pressed="true"]:hover { color: var(--sand-card); }
+  .book-btn {
+    display: inline-block;
+    white-space: nowrap;
+    border-radius: 8px;
+    background: var(--ink);
+    color: var(--sand-card);
+    padding: 9px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+  .book-btn:hover { background: var(--sage); }
+
+  /* ---------- Staff divider (guiño musical) ---------- */
+  .staff-divider {
+    height: 9px;
+    margin-inline: 16px;
+    background-image: repeating-linear-gradient(var(--sand-border) 0 1px, transparent 1px 3px);
+  }
+  @media (min-width: 640px) { .staff-divider { margin-inline: 32px; } }
+
+  /* ---------- Hero ---------- */
   main {
     padding-block: 56px 40px;
   }
+  @media (min-width: 1024px) { main { padding-block: 80px 40px; } }
   .hero {
     display: grid;
     gap: 40px;
   }
-  @media (min-width: 900px) {
+  @media (min-width: 1024px) {
     .hero {
-      grid-template-columns: 280px 1fr;
+      grid-template-columns: auto 1fr;
       align-items: center;
-      gap: 80px;
+      gap: 96px;
     }
   }
+  @media (min-width: 1280px) {
+    .hero { gap: 128px; }
+  }
+  .hero-text { order: 2; }
+  @media (min-width: 1024px) { .hero-text { order: 2; } }
   .kicker {
     margin: 0;
     font-size: 0.75rem;
@@ -80,25 +176,28 @@
     text-wrap: balance;
   }
   .intro {
-    max-width: 42ch;
+    max-width: 32ch;
     margin: 20px 0 0;
     color: var(--ink-muted);
+    line-height: 1.6;
   }
+
   .cta-card {
     display: block;
-    width: 220px;
+    order: 1;
+    width: 208px;
     max-width: 100%;
     margin: 40px auto 0;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 1px 2px rgba(51,47,39,0.08), 0 8px 20px rgba(51,47,39,0.08);
     text-decoration: none;
-    transition: transform 0.2s ease;
+    transition:
+      transform 1.3s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 1.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  @media (min-width: 900px) {
-    .cta-card { margin: 0; order: -1; }
-  }
-  .cta-card:hover { transform: translateY(-2px); }
+  @media (min-width: 640px) { .cta-card { width: 256px; } }
+  @media (min-width: 1024px) { .cta-card { width: 288px; margin: 0; } }
   .cta-card img { display: block; width: 100%; aspect-ratio: 1/1; object-fit: cover; }
   .cta-card .band {
     display: block;
@@ -108,29 +207,34 @@
     font-weight: 600;
     letter-spacing: 0.02em;
     color: #FDFDF1;
-    background: #2E3B28;
+    background: var(--band-rest);
+    transition: background-color 1.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .cta-card[aria-disabled="true"] {
-    cursor: default;
+  .cta-card--breathing {
+    transform: translateY(-3px) scale(1.025);
+    box-shadow: 0 0 0 7px rgba(116,133,94,0.18), 0 16px 28px rgba(51,47,39,0.16);
+    transition: transform 0.5s ease-out, box-shadow 0.5s ease-out;
   }
-  .cta-card[aria-disabled="true"] .band {
-    background: var(--ink-muted);
+  .cta-card--breathing .band {
+    background: var(--sage);
+    transition: background-color 0.5s ease-out;
   }
-  .cta-note {
-    margin: 10px auto 0;
-    max-width: 220px;
-    text-align: center;
-    font-size: 0.72rem;
-    color: var(--ink-muted);
+  .cta-card:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 0 0 8px rgba(116,133,94,0.22), 0 18px 34px rgba(51,47,39,0.2);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-  @media (min-width: 900px) {
-    .cta-note { display: none; }
+  .cta-card:hover .band {
+    background: var(--sage-dark);
+    transition: background-color 0.25s ease;
   }
-  .divider {
-    margin: 56px 0;
-    height: 1px;
-    background: linear-gradient(to right, var(--sand-border), transparent 70%);
+  @media (prefers-reduced-motion: reduce) {
+    .cta-card, .cta-card--breathing, .cta-card:hover, .cta-card .band, .cta-card--breathing .band, .cta-card:hover .band {
+      transition: none;
+    }
   }
+
+  /* ---------- About ---------- */
   .about {
     display: flex;
     gap: 18px;
@@ -154,7 +258,10 @@
     margin: 6px 0 0;
     font-size: 0.9rem;
     color: var(--ink-muted);
+    line-height: 1.6;
   }
+
+  /* ---------- Footer ---------- */
   footer {
     border-top: 2px solid rgba(125,117,102,0.3);
     padding-block: 20px 28px;
@@ -199,58 +306,79 @@
     color: var(--ink-muted);
   }
   .socials a:hover { border-color: var(--sage); color: var(--sage); }
-  .pro-access-row {
-    margin-top: 14px;
-  }
   .pro-access {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(125,117,102,0.2);
+  }
+  .pro-access a {
     display: inline-flex;
     align-items: center;
-    border: 1px solid rgba(125,117,102,0.3);
     border-radius: 8px;
-    padding: 6px 10px;
+    border: 1px solid rgba(125,117,102,0.3);
+    padding: 6px 12px;
     font-size: 0.72rem;
     color: var(--ink-muted);
     text-decoration: none;
   }
-  .pro-access:hover { border-color: var(--ink); color: var(--ink); }
+  .pro-access a:hover { border-color: var(--ink); color: var(--ink); }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="wrap header-row">
-    <span class="brand">Lic. Martín Andrés Brooks</span>
+  <div class="header-row1">
+    <div class="brand-group">
+      <span class="brandmark" aria-hidden="true">MB</span>
+      <span class="brand">Lic. Martín Andrés Brooks</span>
+    </div>
+    <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+  <div class="header-row2">
+    <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="book-btn" data-i18n="header.bookButton" href="https://limonario.limonacio.com/martinbrookspsi/reservar">Reservar turno</a>
   </div>
 </header>
 
+<div class="staff-divider"></div>
+
 <main class="wrap">
   <div class="hero">
-    <div>
-      <!--
-        Conectado al motor de reservas de Limonario — esta página es
-        solo la carta de presentación de Martin, el calendario, el
-        precio, la seña y el pago viven en Limonario.
-      -->
-      <a class="cta-card" href="https://limonario.limonacio.com/martinbrookspsi/reservar">
-        <img src="/public/logo-mb.png" alt="Lic. Martín Andrés Brooks — Psicología">
-        <span class="band">Reservar turno</span>
-      </a>
+    <div class="hero-text">
+      <p class="kicker" data-i18n="home.kicker">Psicoterapia para adultos</p>
+      <h1 data-i18n="home.title">Un espacio para pensar(se).</h1>
+      <p class="intro" data-i18n="home.intro">Ofrezco un espacio de escucha y acompañamiento profesional, pensado para quienes buscan trabajar sobre su bienestar emocional a su propio ritmo. Las sesiones son individuales y se coordinan con turno previo.</p>
     </div>
 
-    <div>
-      <p class="kicker">Psicoterapia para adultos</p>
-      <h1>Un espacio para pensar(se).</h1>
-      <p class="intro">Ofrezco un espacio de escucha y acompañamiento profesional, pensado para quienes buscan trabajar sobre su bienestar emocional a su propio ritmo. Las sesiones son individuales y se coordinan con turno previo.</p>
-    </div>
+    <!--
+      Conectado al motor de reservas de Limonario — esta página es
+      solo la carta de presentación de Martin, el calendario, el
+      precio, la seña y el pago viven en Limonario. La tarjeta
+      "respira" (clase cta-card--breathing, agregada por JS) mientras
+      hay scroll o después de haber sido clickeada, igual que en la
+      versión original integrada a Limonario.
+    -->
+    <a id="ctaCard" class="cta-card" href="https://limonario.limonacio.com/martinbrookspsi/reservar">
+      <img src="/public/logo-mb.png" alt="Lic. Martín Andrés Brooks — Psicología">
+      <span class="band" data-i18n="home.cta">Ver disponibilidad</span>
+    </a>
   </div>
+</main>
 
-  <div class="divider"></div>
+<div class="staff-divider"></div>
 
+<main class="wrap">
   <div class="about">
     <img src="/public/martin-brooks.jpg" alt="Martín Andrés Brooks">
     <div>
-      <h2>Sobre mí</h2>
-      <p>Psicólogo (UNC). Además de la clínica me dedico a la música y no dejo nunca de leer — dos costumbres que, sospecho, terminan filtrándose en cómo escucho.</p>
+      <h2 data-i18n="home.aboutTitle">Sobre mí</h2>
+      <p data-i18n="home.aboutBody">Psicólogo (UNC). Además de la clínica me dedico a la música y no dejo nunca de leer — dos costumbres que, sospecho, terminan filtrándose en cómo escucho.</p>
     </div>
   </div>
 </main>
@@ -280,10 +408,107 @@
       </a>
     </div>
   </div>
-  <div class="wrap pro-access-row">
-    <a href="https://limonario.limonacio.com/login" class="pro-access">Acceso profesional</a>
+  <div class="wrap pro-access">
+    <a href="https://limonario.limonacio.com/login" data-i18n="footer.professionalAccess">Acceso profesional</a>
   </div>
 </footer>
+
+<script>
+(function () {
+  // Mismo diccionario y misma lógica de guardado (localStorage, clave
+  // "locale", arranca en "es") que usa el sistema Limonario — así el
+  // idioma se siente igual en las 2 páginas aunque sean sitios
+  // separados.
+  var dict = {
+    es: {
+      header: { bookButton: "Reservar turno" },
+      footer: { professionalAccess: "Acceso profesional" },
+      home: {
+        kicker: "Psicoterapia para adultos",
+        title: "Un espacio para pensar(se).",
+        intro: "Ofrezco un espacio de escucha y acompañamiento profesional, pensado para quienes buscan trabajar sobre su bienestar emocional a su propio ritmo. Las sesiones son individuales y se coordinan con turno previo.",
+        cta: "Ver disponibilidad",
+        aboutTitle: "Sobre mí",
+        aboutBody: "Psicólogo (UNC). Además de la clínica me dedico a la música y no dejo nunca de leer — dos costumbres que, sospecho, terminan filtrándose en cómo escucho."
+      }
+    },
+    en: {
+      header: { bookButton: "Book a session" },
+      footer: { professionalAccess: "Professional access" },
+      home: {
+        kicker: "Psychotherapy for adults",
+        title: "A space to think(yourself) through.",
+        intro: "I offer a space for listening and professional support, for anyone looking to work on their emotional wellbeing at their own pace. Sessions are one-on-one and scheduled in advance.",
+        cta: "See availability",
+        aboutTitle: "About me",
+        aboutBody: "Psychologist (National University of Córdoba). Alongside my clinical practice I'm also a musician and a lifelong reader — two habits that, I suspect, shape the way I listen."
+      }
+    }
+  };
+
+  var STORAGE_KEY = "locale";
+
+  function getPath(obj, path) {
+    return path.split(".").reduce(function (o, k) { return o ? o[k] : undefined; }, obj);
+  }
+
+  function applyLocale(locale) {
+    document.documentElement.lang = locale;
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var value = getPath(dict[locale], el.getAttribute("data-i18n"));
+      if (value !== undefined) el.textContent = value;
+    });
+    document.querySelectorAll(".lang-toggle button").forEach(function (btn) {
+      btn.setAttribute("aria-pressed", btn.getAttribute("data-lang") === locale ? "true" : "false");
+    });
+  }
+
+  function setLocale(locale) {
+    applyLocale(locale);
+    try { window.localStorage.setItem(STORAGE_KEY, locale); } catch (e) {
+      // localStorage puede no estar disponible (modo privado, etc.) —
+      // si falla, el idioma simplemente no queda guardado.
+    }
+  }
+
+  document.querySelectorAll(".lang-toggle button").forEach(function (btn) {
+    btn.addEventListener("click", function () { setLocale(btn.getAttribute("data-lang")); });
+  });
+
+  var initial = "es";
+  try {
+    var saved = window.localStorage.getItem(STORAGE_KEY);
+    if (saved === "es" || saved === "en") initial = saved;
+  } catch (e) {
+    // Arranca en español si no se puede leer localStorage.
+  }
+  applyLocale(initial);
+
+  // Tarjeta logo + "Ver disponibilidad": respira mientras hay scroll
+  // (se apaga a los 900ms sin eventos nuevos) y queda "prendida" al
+  // clickear, igual que en la versión integrada a Limonario.
+  var cta = document.getElementById("ctaCard");
+  var scrollTimeout;
+  var pressed = false;
+
+  function setBreathing(on) {
+    cta.classList.toggle("cta-card--breathing", on);
+  }
+
+  window.addEventListener("scroll", function () {
+    if (!pressed) setBreathing(true);
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function () {
+      if (!pressed) setBreathing(false);
+    }, 900);
+  }, { passive: true });
+
+  cta.addEventListener("click", function () {
+    pressed = true;
+    setBreathing(true);
+  });
+})();
+</script>
 
 </body>
 </html>
