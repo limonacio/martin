@@ -138,6 +138,10 @@
   /* ---------- Staff divider (guiño musical) ---------- */
   .staff-divider {
     height: 9px;
+    /* Es un <div> vacío y, al ser hijo directo de <body> (que es un
+       flex container, ver más abajo), los navegadores lo colapsan a
+       0px de alto salvo que se le prohíba encogerse explícitamente. */
+    flex-shrink: 0;
     background-image: repeating-linear-gradient(var(--sand-border) 0 1px, transparent 1px 3px);
   }
   /* La de debajo del header: fuera de cualquier contenedor angosto,
