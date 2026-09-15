@@ -333,6 +333,14 @@
     margin-top: 18px;
     border-top: 1px solid rgba(125,117,102,0.2);
   }
+  /* El contenido del footer tampoco va dentro de .wrap (que tiene
+     max-width y lo centra angosto) — usa el mismo padding sin tope
+     que el header, para que quede alineado con los bordes reales de
+     la página igual que en el original. */
+  .footer-pad {
+    padding-inline: 16px;
+  }
+  @media (min-width: 640px) { .footer-pad { padding-inline: 32px; } }
   .pro-access {
     padding-top: 14px;
   }
@@ -407,7 +415,7 @@
 </main>
 
 <footer>
-  <div class="wrap footer-row">
+  <div class="footer-pad footer-row">
     <div class="contact-links">
       <a href="https://mail.google.com/mail/?view=cm&fs=1&to=martin.brooks.psi@gmail.com" target="_blank" rel="noopener noreferrer">
         <span class="icon-circle">
@@ -432,7 +440,7 @@
     </div>
   </div>
   <div class="footer-divider"></div>
-  <div class="wrap pro-access">
+  <div class="footer-pad pro-access">
     <a href="https://limonario.limonacio.com/login" data-i18n="footer.professionalAccess">Acceso profesional</a>
   </div>
 </footer>
