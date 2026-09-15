@@ -199,6 +199,20 @@
     color: var(--ink-muted);
   }
   .socials a:hover { border-color: var(--sage); color: var(--sage); }
+  .pro-access-row {
+    margin-top: 14px;
+  }
+  .pro-access {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid rgba(125,117,102,0.3);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    text-decoration: none;
+  }
+  .pro-access:hover { border-color: var(--ink); color: var(--ink); }
 </style>
 </head>
 <body>
@@ -213,17 +227,14 @@
   <div class="hero">
     <div>
       <!--
-        Este botón todavía no está conectado a nada a propósito —
-        Martin y Limonario se separaron primero, la conexión al
-        sistema de reservas se agrega después como un paso aparte.
-        Cuando esté listo, este <a> pasa a apuntar a:
-        https://limonario.limonacio.com/martinbrookspsi/reservar
+        Conectado al motor de reservas de Limonario — esta página es
+        solo la carta de presentación de Martin, el calendario, el
+        precio, la seña y el pago viven en Limonario.
       -->
-      <a class="cta-card" href="#" aria-disabled="true" onclick="return false;">
+      <a class="cta-card" href="https://limonario.limonacio.com/martinbrookspsi/reservar">
         <img src="/public/logo-mb.png" alt="Lic. Martín Andrés Brooks — Psicología">
-        <span class="band">Muy pronto: reservar turno</span>
+        <span class="band">Reservar turno</span>
       </a>
-      <p class="cta-note">La reserva online se habilita en breve.</p>
     </div>
 
     <div>
@@ -268,6 +279,9 @@
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.3" cy="6.7" r="0.7" fill="currentColor" stroke="none"/></svg>
       </a>
     </div>
+  </div>
+  <div class="wrap pro-access-row">
+    <a href="https://limonario.limonacio.com/login" class="pro-access">Acceso profesional</a>
   </div>
 </footer>
 
