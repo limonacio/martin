@@ -155,15 +155,77 @@
      el resto del contenido (.wrap), así que ocupa solo esa franja del
      medio, no la página entera — igual que en la versión original. */
   .staff-divider--inner {
-    margin-block: 48px;
+    /* 8px + los 40px de padding de abajo del hero = los 48px de siempre. */
+    margin-block: 8px 48px;
+  }
+
+  /* ---------- Fondo de foto con parallax (header + hero) ----------
+     .top agrupa el header y el hero. Capas, de atrás para adelante:
+       1) .top-bg: la foto. Es 30% más alta que el bloque y JS la baja un
+          poco menos de lo que baja el scroll (efecto parallax). Las
+          clases son solo de fondo: no tocan el texto.
+       2) .hero-veil: un velo de color papel, casi transparente arriba y
+          opaco abajo, para que la foto se funda con el fondo de la página.
+     Para que el texto NO se trasluzca, el header y los bloques de texto
+     (.hero-text y .epigraph, más abajo) llevan su propio fondo papel casi
+     opaco: se lee igual que sobre fondo liso. */
+  .top {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    flex: none;
+  }
+  .top-bg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -30%;
+    bottom: 0;
+    z-index: -1;
+    background: #c9d6ea url("/public/hero-mar.jpg") center 60% / cover no-repeat;
+    will-change: transform;
+  }
+  @media (max-width: 767px) {
+    /* En celular el bloque es alto y angosto: recorte vertical de la foto. */
+    .top-bg { background-image: url("/public/hero-mar-mobile.jpg"); background-position: 70% 55%; }
+  }
+  .top header { background: rgba(247,242,233,0.55); }
+  .hero-veil {
+    background: linear-gradient(to bottom, rgba(247,242,233,0.08), rgba(247,242,233,0.16) 55%, var(--sand));
   }
 
   /* ---------- Hero ---------- */
   .hero-main {
-    flex: 1;
-    padding-block: 56px;
+    padding-top: 56px;
+    padding-bottom: 40px;
   }
-  @media (min-width: 1024px) { .hero-main { padding-block: 80px; } }
+  @media (min-width: 1024px) { .hero-main { padding-top: 80px; } }
+  /* Bloque de abajo (divisor + "Sobre mí"): ocupa el resto de la
+     pantalla para que el footer quede siempre al fondo. */
+  .about-main {
+    flex: 1;
+    padding-bottom: 56px;
+  }
+  @media (min-width: 1024px) { .about-main { padding-bottom: 80px; } }
+  /* Bloques de texto sobre la foto: fondo papel casi opaco + un poco de
+     desenfoque, para que no se vea nada de la foto "a través" de las letras. */
+  .hero-text,
+  .epigraph {
+    background: rgba(247,242,233,0.94);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  .hero-text {
+    padding: 22px 22px 24px;
+    border-radius: 18px;
+  }
+  @media (min-width: 640px) {
+    .hero-text {
+      padding: 30px 36px 32px;
+      max-width: 34rem;
+      justify-self: start;
+    }
+  }
 
   /* ---------- Epígrafe (como en los libros) ----------
      Cita al margen superior derecho: versos en cursiva y el autor abajo,
@@ -174,6 +236,8 @@
   .epigraph {
     margin: 0 0 32px auto;
     max-width: 19rem;
+    padding: 14px 18px 12px;
+    border-radius: 14px;
     text-align: right;
     color: var(--ink-muted);
   }
@@ -430,6 +494,9 @@
 </head>
 <body>
 
+<div class="top">
+<div class="top-bg" aria-hidden="true"></div>
+
 <header>
   <div class="header-row1">
     <div class="brand-group">
@@ -452,6 +519,7 @@
 
 <div class="staff-divider staff-divider--header"></div>
 
+<div class="hero-veil">
 <main class="wrap hero-main">
   <!-- Epígrafe: Antonio Machado, "Proverbios y cantares" (Campos de Castilla).
        Va siempre en español, sin data-i18n: es un verso, no se traduce. -->
@@ -485,7 +553,11 @@
       <span class="band" data-i18n="home.cta">Ver disponibilidad</span>
     </a>
   </div>
+</main>
+</div>
+</div><!-- /.top -->
 
+<main class="wrap about-main">
   <div class="staff-divider staff-divider--inner"></div>
 
   <div class="about">
@@ -647,6 +719,34 @@
     pressed = true;
     setBreathing(true);
   });
+
+  // Parallax de la foto de fondo del header: baja un 30% de lo que baja
+  // el scroll, así "se queda atrás" y parece más lejos. No usa
+  // background-attachment: fixed porque en iPhone no funciona. Si la
+  // persona tiene activado "reducir movimiento", la foto queda quieta.
+  var topEl = document.querySelector(".top");
+  var topBg = document.querySelector(".top-bg");
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var parallaxQueued = false;
+
+  function updateParallax() {
+    parallaxQueued = false;
+    if (reduceMotion.matches) {
+      topBg.style.transform = "";
+      return;
+    }
+    var scrolled = Math.min(Math.max(window.scrollY, 0), topEl.offsetHeight);
+    topBg.style.transform = "translate3d(0," + (scrolled * 0.3) + "px,0)";
+  }
+
+  window.addEventListener("scroll", function () {
+    if (!parallaxQueued) {
+      parallaxQueued = true;
+      window.requestAnimationFrame(updateParallax);
+    }
+  }, { passive: true });
+  window.addEventListener("resize", updateParallax);
+  updateParallax();
 })();
 </script>
 
