@@ -479,6 +479,16 @@
   .pro-access {
     padding-top: 14px;
   }
+  .footer-legal {
+    margin-top: 14px;
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    opacity: 0.85;
+  }
+  .footer-legal p { margin: 2px 0; }
+  .footer-legal a { color: inherit; text-decoration: none; }
+  .footer-legal a:hover { text-decoration: underline; }
   .pro-access a {
     display: inline-flex;
     align-items: center;
@@ -623,6 +633,10 @@
   <div class="footer-pad pro-access">
     <a href="https://limonario.limonacio.com/login" data-i18n="footer.professionalAccess">Acceso profesional</a>
   </div>
+  <div class="footer-pad footer-legal">
+    <p>© 2026 Martín Brooks. <span data-i18n="footer.rights">Todos los derechos reservados.</span></p>
+    <p><a href="https://www.limonacio.com" target="_blank" rel="noopener noreferrer"><span data-i18n="footer.credit">Desarrollado por</span> Limonacio</a></p>
+  </div>
 </footer>
 
 <script>
@@ -634,7 +648,7 @@
   var dict = {
     es: {
       header: { bookButton: "Reservar turno" },
-      footer: { professionalAccess: "Acceso profesional" },
+      footer: { professionalAccess: "Acceso profesional", rights: "Todos los derechos reservados.", credit: "Desarrollado por" },
       home: {
         kicker: "Psicoterapia para adultos",
         title: "Un espacio para pensar(se).",
@@ -646,7 +660,7 @@
     },
     en: {
       header: { bookButton: "Book a session" },
-      footer: { professionalAccess: "Professional access" },
+      footer: { professionalAccess: "Professional access", rights: "All rights reserved.", credit: "Developed by" },
       home: {
         kicker: "Psychotherapy for adults",
         title: "A space to think(yourself) through.",
