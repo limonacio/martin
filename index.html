@@ -156,6 +156,22 @@
   @media (prefers-reduced-motion: reduce) {
     .book-btn, .book-btn--breathing, .book-btn:hover { transition: none; }
   }
+  /* Celular (<640px): el botón sale del header y aparece debajo de la foto,
+     arriba de "Sobre mí". En compu es al revés. */
+  .book-mobile { display: none; flex: none; }
+  @media (max-width: 639px) {
+    .header-row2 { display: none; }
+    /* Header más liviano en celular: logo y nombre más chicos para que
+       entren en una sola fila junto al selector de idioma. */
+    .brand-logo { width: 52px; height: 52px; border-radius: 8px; }
+    .brand-group { gap: 10px; min-width: 0; }
+    .brand { font-size: 0.9rem; line-height: 1.2; }
+    .book-mobile {
+      display: block;
+      text-align: center;
+      padding: 8px 16px 0;
+    }
+  }
   /* Logo cuadrado del header (ya no es botón). */
   .brand-logo {
     display: block;
@@ -588,7 +604,7 @@
       "respira" (clase book-btn--breathing, agregada por JS) mientras
       hay scroll o después de haber sido clickeado.
     -->
-    <a id="ctaCard" class="book-btn" data-i18n="header.bookButton" href="https://limonario.limonacio.com/martinbrookspsi/reservar">Reservar turno</a>
+    <a class="book-btn" data-i18n="header.bookButton" href="https://limonario.limonacio.com/martinbrookspsi/reservar">Reservar turno</a>
   </div>
 </header>
 
@@ -615,6 +631,12 @@
 </main>
 </div>
 </div><!-- /.top -->
+
+<!-- Solo celular: el botón de reservar va entre la foto y "Sobre mí"
+     (en compu queda en el header). Mismos efectos que el del header. -->
+<div class="book-mobile">
+  <a class="book-btn" data-i18n="header.bookButton" href="https://limonario.limonacio.com/martinbrookspsi/reservar">Reservar turno</a>
+</div>
 
 <main class="wrap about-main">
   <div class="staff-divider staff-divider--inner"></div>
@@ -762,12 +784,12 @@
   // Tarjeta logo + "Ver disponibilidad": respira mientras hay scroll
   // (se apaga a los 900ms sin eventos nuevos) y queda "prendida" al
   // clickear, igual que en la versión integrada a Limonario.
-  var cta = document.getElementById("ctaCard");
+  var ctas = document.querySelectorAll(".book-btn");
   var scrollTimeout;
   var pressed = false;
 
   function setBreathing(on) {
-    cta.classList.toggle("book-btn--breathing", on);
+    ctas.forEach(function (b) { b.classList.toggle("book-btn--breathing", on); });
   }
 
   window.addEventListener("scroll", function () {
@@ -778,9 +800,11 @@
     }, 900);
   }, { passive: true });
 
-  cta.addEventListener("click", function () {
-    pressed = true;
-    setBreathing(true);
+  ctas.forEach(function (b) {
+    b.addEventListener("click", function () {
+      pressed = true;
+      setBreathing(true);
+    });
   });
 
   // Parallax de la foto de fondo del header: baja un 30% de lo que baja
