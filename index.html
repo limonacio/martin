@@ -191,7 +191,7 @@
   }
   .top header { background: rgba(247,242,233,0.55); }
   .hero-veil {
-    background: linear-gradient(to bottom, rgba(247,242,233,0.08), rgba(247,242,233,0.16) 55%, var(--sand));
+    background: linear-gradient(to bottom, rgba(247,242,233,0.38), rgba(247,242,233,0.5) 55%, var(--sand));
   }
 
   /* ---------- Hero ---------- */
@@ -209,23 +209,14 @@
   @media (min-width: 1024px) { .about-main { padding-bottom: 80px; } }
   /* Bloques de texto sobre la foto: fondo papel casi opaco + un poco de
      desenfoque, para que no se vea nada de la foto "a través" de las letras. */
+  /* Sin tarjeta: el texto va directo sobre la foto. Para que se siga
+     leyendo, el velo de arriba es más firme y las letras llevan un halo
+     suave del color del papel (text-shadow), sin cajas ni bordes. */
   .hero-text,
   .epigraph {
-    background: rgba(247,242,233,0.94);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
+    text-shadow: 0 0 14px rgba(247,242,233,0.95), 0 0 4px rgba(247,242,233,0.9);
   }
-  .hero-text {
-    padding: 22px 22px 24px;
-    border-radius: 18px;
-  }
-  @media (min-width: 640px) {
-    .hero-text {
-      padding: 30px 36px 32px;
-      max-width: 34rem;
-      justify-self: start;
-    }
-  }
+  .hero-text { max-width: 34rem; }
 
   /* ---------- Epígrafe (como en los libros) ----------
      Cita al margen superior derecho: versos en cursiva y el autor abajo,
@@ -236,8 +227,6 @@
   .epigraph {
     margin: 0 0 32px auto;
     max-width: 19rem;
-    padding: 14px 18px 12px;
-    border-radius: 14px;
     text-align: right;
     color: var(--ink-muted);
   }
