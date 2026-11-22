@@ -169,8 +169,9 @@
     .book-mobile {
       display: block;
       text-align: center;
-      padding: 8px 16px 0;
+      padding: 0 0 32px;
     }
+    .about-main .staff-divider--inner { margin-bottom: 24px; }
   }
   /* Logo cuadrado del header (ya no es botón). */
   .brand-logo {
@@ -632,14 +633,14 @@
 </div>
 </div><!-- /.top -->
 
-<!-- Solo celular: el botón de reservar va entre la foto y "Sobre mí"
-     (en compu queda en el header). Mismos efectos que el del header. -->
-<div class="book-mobile">
-  <a class="book-btn" data-i18n="header.bookButton" href="https://limonario.limonacio.com/martinbrookspsi/reservar">Reservar turno</a>
-</div>
-
 <main class="wrap about-main">
   <div class="staff-divider staff-divider--inner"></div>
+
+  <!-- Solo celular: el botón de reservar va debajo del pentagrama y arriba
+       de "Sobre mí" (en compu queda en el header). Mismos efectos. -->
+  <div class="book-mobile">
+    <a class="book-btn" data-i18n="header.bookButton" href="https://limonario.limonacio.com/martinbrookspsi/reservar">Reservar turno</a>
+  </div>
 
   <div class="about">
     <img src="/public/martin-brooks.jpg" alt="Martín Andrés Brooks">
