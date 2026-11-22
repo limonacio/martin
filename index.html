@@ -195,11 +195,13 @@
   }
 
   /* ---------- Hero ---------- */
+  /* Sin título ni tarjeta en el hero: la altura mínima deja respirar a la foto. */
   .hero-main {
     padding-top: 56px;
     padding-bottom: 40px;
+    min-height: 220px;
   }
-  @media (min-width: 1024px) { .hero-main { padding-top: 80px; } }
+  @media (min-width: 1024px) { .hero-main { padding-top: 80px; min-height: 300px; } }
   /* Bloque de abajo (divisor + "Sobre mí"): ocupa el resto de la
      pantalla para que el footer quede siempre al fondo. */
   .about-main {
@@ -322,6 +324,12 @@
   }
   @media (min-width: 640px) { .cta-card { width: 256px; } }
   @media (min-width: 1024px) { .cta-card { width: 288px; margin: 0; } }
+  /* Versión chica, en el header (donde antes estaba el círculo MB + el
+     nombre). Mismos efectos que la grande; va después de las reglas de
+     ancho de arriba para ganarles en todos los tamaños. */
+  .cta-card.cta-card--sm { width: 112px; margin: 0; flex-shrink: 0; }
+  @media (min-width: 640px) { .cta-card.cta-card--sm { width: 132px; } }
+  .cta-card--sm .band { padding: 7px 6px; font-size: 0.7rem; }
   .cta-card img { display: block; width: 100%; aspect-ratio: 1/1; object-fit: cover; }
   .cta-card .band {
     display: block;
@@ -508,10 +516,17 @@
 
 <header>
   <div class="header-row1">
-    <div class="brand-group">
-      <span class="brandmark" aria-hidden="true">MB</span>
-      <span class="brand">Lic. Martín Andrés Brooks</span>
-    </div>
+    <!--
+      Conectado al motor de reservas de Limonario — esta página es
+      solo la carta de presentación de Martin, el calendario, el
+      precio, la seña y el pago viven en Limonario. La tarjeta
+      "respira" (clase cta-card--breathing, agregada por JS) mientras
+      hay scroll o después de haber sido clickeada.
+    -->
+    <a id="ctaCard" class="cta-card cta-card--sm" href="https://limonario.limonacio.com/martinbrookspsi/reservar">
+      <img src="/public/logo-mb.png" alt="Lic. Martín Andrés Brooks — Psicología">
+      <span class="band" data-i18n="home.cta">Ver disponibilidad</span>
+    </a>
     <div class="lang-toggle" role="group" aria-label="Idioma / Language">
       <button type="button" data-lang="es" aria-pressed="true">ES</button>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -545,19 +560,6 @@
   <div class="hero">
     <!-- Título oculto a la vista: queda para lectores de pantalla y Google. -->
     <h1 class="sr-only" data-i18n="home.title">Un espacio para pensar(se).</h1>
-
-    <!--
-      Conectado al motor de reservas de Limonario — esta página es
-      solo la carta de presentación de Martin, el calendario, el
-      precio, la seña y el pago viven en Limonario. La tarjeta
-      "respira" (clase cta-card--breathing, agregada por JS) mientras
-      hay scroll o después de haber sido clickeada, igual que en la
-      versión original integrada a Limonario.
-    -->
-    <a id="ctaCard" class="cta-card" href="https://limonario.limonacio.com/martinbrookspsi/reservar">
-      <img src="/public/logo-mb.png" alt="Lic. Martín Andrés Brooks — Psicología">
-      <span class="band" data-i18n="home.cta">Ver disponibilidad</span>
-    </a>
   </div>
 </main>
 </div>
