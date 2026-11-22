@@ -327,7 +327,9 @@
   /* Versión chica, en el header (donde antes estaba el círculo MB + el
      nombre). Mismos efectos que la grande; va después de las reglas de
      ancho de arriba para ganarles en todos los tamaños. */
-  .cta-card.cta-card--sm { margin: 0; flex-shrink: 0; }
+  .cta-card.cta-card--sm { width: 148px; margin: 0; flex-shrink: 0; }
+  @media (min-width: 640px) { .cta-card.cta-card--sm { width: 164px; } }
+  .cta-card--sm .band { padding: 9px 6px; font-size: 0.76rem; white-space: nowrap; }
   .cta-card img { display: block; width: 100%; aspect-ratio: 1/1; object-fit: cover; }
   .cta-card .band {
     display: block;
